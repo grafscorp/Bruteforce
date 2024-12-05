@@ -8,13 +8,15 @@ std::string Bruteforce::bruteforce(
         const  bool special_characters= true,const  bool spaces = true, bool isLogging = false)
 {
     int availableCharactersSize = 0;
+    
+    //An array containing ascii character codes
     int *availableCharacters = new int[200];
 
     char currect_password[max_password_size];
 
     int numTry = 0;
     srand(time(0));
-    
+    //I add certain ASCII character codes to the list of available characters
     if (digitals)
     {
         addCharacters(availableCharacters, &availableCharactersSize,48, 57 );

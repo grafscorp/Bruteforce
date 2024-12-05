@@ -1,7 +1,6 @@
-
 #include <iostream>
-#include "bruteforce.h"
 #include <string>
+#include "bruteforce.h"
 
 bool set_password(std::string);
 
