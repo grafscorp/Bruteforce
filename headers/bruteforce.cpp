@@ -34,6 +34,7 @@ std::string Bruteforce::bruteforce(
     
     while (numTry <= max_try)
     {
+        //*TODO to finalize the algorithm options
         //Generated password
         generatedPasswordRandom(&currect_password, max_password_size, availableCharacters,&availableCharactersSize);
         //result
