@@ -9,9 +9,9 @@ public:
     //That function returned founded password or empty string, you must pass a link to a function that returns a Boolean data type to which password options are passed
     static std::string bruteforce(
         bool (*pass_func)(std::string),
-        unsigned max_password_size = 4, int max_try = 5,
-        const bool digitals = true,const bool letters = true,const  bool caps_letters =true, 
-        const  bool special_characters= true,const  bool spaces = true, bool isLogging = false);
+        unsigned, int max_try,
+        const bool digitals ,const bool letters ,const  bool caps_letters , 
+        const  bool special_characters,const  bool spaces , bool isLogging );
     
 private:
     //add characters from X to Y ACII-code 
@@ -19,5 +19,5 @@ private:
     //print all array available characters 
     static void printAvailableCharacters(int *&availableCharacters, int *availableCharactersSize);
     //generated random chars to pass, from characters 
-    static void generatedPasswordRandom(char* pass, int maxSize, int*& characters, int* availableCharactersSize);
+    static void generatedPasswordRandom(std::string *, int maxSize, int*& characters, int* availableCharactersSize);
 };

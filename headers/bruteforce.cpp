@@ -1,6 +1,5 @@
 #include "bruteforce.h"
 
-
 std::string Bruteforce::bruteforce(
         bool (*pass_func)(std::string),
         unsigned max_password_size = 4, int max_try = 5,
@@ -12,23 +11,15 @@ std::string Bruteforce::bruteforce(
     //An array containing ascii character codes
     int *availableCharacters = new int[200];
 
-    char currect_password[max_password_size];
+    std::string currect_password;
 
     int numTry = 0;
     srand(time(0));
     //I add certain ASCII character codes to the list of available characters
-    if (digitals)
-    {
-        addCharacters(availableCharacters, &availableCharactersSize,48, 57 );
-        
-    }if (letters)
-    {
-        addCharacters(availableCharacters, &availableCharactersSize, 97, 122 );
-    }
-    if (caps_letters)
-    {
-        addCharacters(availableCharacters, &availableCharactersSize, 65, 90 );
-    }if(special_characters)
+    if (digitals)addCharacters(availableCharacters, &availableCharactersSize,48, 57 );
+    if (letters) addCharacters(availableCharacters, &availableCharactersSize, 97, 122 );
+    if (caps_letters)addCharacters(availableCharacters, &availableCharactersSize, 65, 90 );
+    if(special_characters)
     {
         addCharacters(availableCharacters, &availableCharactersSize,58 , 64 );
         addCharacters(availableCharacters, &availableCharactersSize, 91, 96 );
@@ -44,11 +35,12 @@ std::string Bruteforce::bruteforce(
     while (numTry <= max_try)
     {
         //Generated password
-        generatedPasswordRandom(currect_password, max_password_size, availableCharacters,&availableCharactersSize);
+        generatedPasswordRandom(&currect_password, max_password_size, availableCharacters,&availableCharactersSize);
         //result
         if ( (*pass_func)(currect_password)) return currect_password;
         if (isLogging) std::cout << currect_password << " is wrong." << std::endl;
         numTry++;
+        currect_password = "";
     }
     
     delete[] availableCharacters;
@@ -72,7 +64,7 @@ void Bruteforce::printAvailableCharacters(int *&availableCharacters, int *availa
         }
         std::cout << std::endl;
     }
-void Bruteforce::generatedPasswordRandom(char* pass, int maxSize, int*& characters, int* availableCharactersSize)
+void Bruteforce::generatedPasswordRandom(std::string *currect_password, int maxSize, int*& characters, int* availableCharactersSize)
     {
         
         for (int i = 0; i < maxSize;i++)
@@ -80,7 +72,7 @@ void Bruteforce::generatedPasswordRandom(char* pass, int maxSize, int*& characte
             
             int randChar = rand()%(*availableCharactersSize);
             char newchar = char(*(characters +randChar ));
-            *(pass+i) =  newchar;
+            *currect_password +=  newchar;
             
         }
 
