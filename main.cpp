@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 
 
 
-    std::string password = bruteforce.bruteforce(ptr_print, BRUTEFORCE_TYPE::LINEAR);
+    std::string password = bruteforce.bruteforce(ptr_print, BRUTEFORCE_TYPE::RANDOM);
     if (password != "")
     {
         std::cout << "PASSWORD IS FOUNDED : " << password << std::endl;
