@@ -55,7 +55,9 @@ std::string Bruteforce::bruteforce(bool (*pass_func)(std::string), const BRUTEFO
         srand(time(time_t(0)));
         currect_password= generatedPasswordRandom(*pass_func,availableCharacters,&availableCharactersSize );
         break;
-    
+    case BRUTEFORCE_TYPE::LINEAR:
+        currect_password = generatedPasswordLinear(*pass_func,availableCharacters,&availableCharactersSize );
+        break;
     default:
         currect_password = "";
         break;
@@ -102,12 +104,14 @@ std::string Bruteforce::generatedPasswordRandom(bool (*pass_func)(std::string), 
 
 std::string Bruteforce::generatedPasswordLinear(bool (*pass_func)(std::string), int *&characters, int *availableCharactersSize)
 {
-    //std::string tempPasswords[maxTry];
+    std::string tempPasswords[999];
+    std::string tempPassword;
     unsigned nowTry = 0;
 
-
-
-
+    tempPassword.clear();
+    generateLinearPasswords(characters, availableCharactersSize,tempPasswords,&tempPassword,1);
+    // std::cout << tempPasswords[0];
+    // std::cout << tempPasswords[700];
 
     // if (sizeof(tempPass)/sizeof(tempPass[0]) == 0)
     // {
@@ -124,7 +128,28 @@ std::string Bruteforce::generatedPasswordLinear(bool (*pass_func)(std::string), 
 }
 
 
-
+void Bruteforce::generateLinearPasswords(int *&characters, int *availableCharactersSize,std::string *tempPasswordsList,std::string *tempPassword, unsigned indexChar)
+{
+    // for(int i = 0; i <= *availableCharactersSize; i++)
+    // {
+    //     if(tempPasswordsList->size() == maxTry) return;
+    //     if (i == *availableCharactersSize) {
+    //         char a[1]= {char((*characters+(--i)))};
+    //         (*tempPassword).insert(indexChar, a);
+    //         --indexChar;
+    //         return;
+    //     }
+    //     char a[1]= {char((*characters+i))};
+    //     (*tempPassword).insert(indexChar-1, a );
+    //     if ((*tempPassword).size() == maxPasswordSize){
+    //         tempPasswordsList->append(std::string(*tempPassword));
+    //         if (isLogging) std::cout << *tempPassword << std::endl;
+    //         (*tempPassword).erase(indexChar-1);
+    //     }
+    //     if (indexChar < maxPasswordSize && tempPasswordsList->empty()) 
+    //         generateLinearPasswords(characters,availableCharactersSize,tempPasswordsList,tempPassword,++indexChar);
+    // }
+}
 
 void Bruteforce::addCharacters(int *&availableCharacters, int *availableCharactersSize, int first_char, int last_char)
     {
