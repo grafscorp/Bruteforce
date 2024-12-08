@@ -42,6 +42,6 @@ protected:
     //generated random chars to pass, from characters 
     std::string generatedPasswordRandom( bool (*pass_func)(std::string), int*& characters, int* availableCharactersSize);
     std::string generatedPasswordLinear( bool (*pass_func)(std::string),int*& characters, int* availableCharactersSize);
-    
+    void generateLinearPasswords(int *&characters, int *availableCharactersSize,std::string *tempPasswords,std::string *tempPassword,unsigned indexChar);
 
 };
